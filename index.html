@@ -12,8 +12,8 @@
         <meta content="Ian Coleman" name="author" />
         <link type="image/x-icon" rel="icon"
             href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQEAYAAABPYyMiAAAABmJLR0T///////8JWPfcAAAACXBIWXMAAABIAAAASABGyWs+AAAAF0lEQVRIx2NgGAWjYBSMglEwCkbBSAcACBAAAeaR9cIAAAAASUVORK5CYII=" />
-        <meta http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';">
+        <!-- <meta http-equiv="Content-Security-Policy"
+            content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline';"> -->
         <!-- <meta http-equiv="Content-Security-Policy" 
             content="default-src 'self'; script-src 'self'; style-src 'self';"> -->
     </head>
@@ -993,6 +993,12 @@
                                             <button class="private-key-toggle btn">Toggle</button>
                                         </div>
                                     </th>
+                                    <th>
+                                        <div class="input-group">
+                                            <span>Balance</span>&nbsp;&nbsp;
+
+                                        </div>
+                                    </th>
                                 </thead>
                                 <tbody class="addresses monospace">
                                     <tr>
@@ -1000,30 +1006,35 @@
                                         <td>&nbsp;</td>
                                         <td class="private-data">&nbsp;</td>
                                         <td class="private-data">&nbsp;</td>
+                                        <td>Not loaded</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td>&nbsp;</td>
+                                        <td class="private-data">&nbsp;</td>
+                                        <td class=" private-data">&nbsp;</td>
+                                        <td>Not loaded</td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td class="private-data">&nbsp;</td>
                                         <td class="private-data">&nbsp;</td>
+                                        <td>Not loaded</td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td class="private-data">&nbsp;</td>
                                         <td class="private-data">&nbsp;</td>
+                                        <td>Not loaded</td>
                                     </tr>
                                     <tr>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td class="private-data">&nbsp;</td>
                                         <td class="private-data">&nbsp;</td>
-                                    </tr>
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td class="private-data">&nbsp;</td>
-                                        <td class="private-data">&nbsp;</td>
+                                        <td>Not loaded</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -1039,11 +1050,14 @@
             </div>
             <br>
 
+
             <input type="number" class="rows-to-add btn" value="10">
             <button class="more btn">more rows</button>
 
             <input placeholder="starting from index" type="number" class="more-rows-start-index btn">
             <span>(leave blank to generate from next index)</span>
+            <!-- Add a button to load balances on click -->
+            <button class="btn" id="load-balances">Load Balances</button>
             <div class="qr-container hidden">
                 <div class="qr-hint bg-primary hidden">Click field to hide QR</div>
                 <div class="qr-hint bg-primary">Click field to show QR</div>
@@ -1058,9 +1072,11 @@
             <script type="text/template" id="address-row-template">
             <tr>
                 <td class="index"><span></span></td>
-                <td class="address"><a><span data-show-qr></span><br></a></td>
+                <td class="address"><a><span data-show-qr></span></a></td>
                 <td class="pubkey private-data"><span data-show-qr></span></td>
                 <td class="privkey private-data"><span data-show-qr></span></td>
+                <td class="balance"><span></span></td>
+
             </tr>
         </script>
             <script src="js/jquery-3.2.1.js"></script>
@@ -1091,6 +1107,38 @@
             <script src="js/index.js"></script>
             <script src="renderer.js"></script>
 
+
+            <script>
+
+                // function loadBalances() {
+                //     const rows = document.querySelectorAll('table tbody.addresses.monospace tr');
+                //     rows.forEach(row => {
+                //         const addressSpan = row.querySelector('.address a span');
+                //         if (!addressSpan) return;
+                //         const address = addressSpan.textContent;
+                //         const balanceTd = row.querySelector('.balance');
+                //         if (balanceTd) {
+                //             balanceTd.textContent = 'Loading...';
+                //             fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${address}/balance`)
+                //                 .then(response => response.json())
+                //                 .then(data => {
+                //                     const balance = data.balance / 100000000;
+                //                     balanceTd.textContent = balance.toFixed(8) + ' BTC';
+                //                 })
+                //                 .catch(error => {
+                //                     console.error('Error fetching balance:', error);
+                //                     balanceTd.textContent = 'Error';
+                //                 });
+                //         } else {
+                //             console.warn('Balance td not found for row:', row);
+                //         }
+                //     });
+                // }
+
+                // document.addEventListener('DOMContentLoaded', function () {
+                //     document.getElementById('load-balances').addEventListener('click', loadBalances);
+                // });
+            </script>
     </body>
 
 </html>

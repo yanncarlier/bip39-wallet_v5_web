@@ -198,32 +198,32 @@ document.getElementById('load').addEventListener('click', async (event) => {
     }
 });
 
+function loadBalances() {
+    const rows = document.querySelectorAll('table tbody.addresses.monospace tr');
 
-// document.getElementById('load').addEventListener('click', async (event) => {
-//     event.preventDefault();
+    rows.forEach(row => {
+        const addressSpan = row.querySelector('.address a span');
+        if (!addressSpan) return;
+        const address = addressSpan.textContent;
+        const balanceTd = row.querySelector('.balance');
+        if (balanceTd) {
+            balanceTd.textContent = 'Loading...';
+            fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${address}/balance`)
+                .then(response => response.json())
+                .then(data => {
+                    const balance = data.balance / 100000000;
+                    balanceTd.textContent = balance.toFixed(8) + ' BTC';
+                })
+                .catch(error => {
+                    console.error('Error fetching balance:', error);
+                    balanceTd.textContent = 'Error';
+                });
+        } else {
+            console.warn('Balance td not found for row:', row);
+        }
+    });
+}
 
-//     // Get DOM elements directly
-//     const password = document.getElementById('password').value;
-//     const status = document.getElementById('status');
-//     const phrase = document.getElementById('phrase');
-//     const autoCompute = document.getElementById('autoCompute');
-
-//     try {
-//         // Load the mnemonic using an API (e.g., Electron API)
-//         const mnemonic = await window.electronAPI.loadMnemonic(password);
-
-//         // Set the autoCompute checkbox to checked
-//         autoCompute.checked = true;
-
-//         // Set the phrase value
-//         phrase.value = mnemonic;
-
-//         // Trigger the 'input' event on the phrase element
-//         phrase.dispatchEvent(new Event('input'));
-
-//         // Update status
-//         status.textContent = 'Loaded successfully.';
-//     } catch (err) {
-//         status.textContent = err.message;
-//     }
-// });
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('load-balances').addEventListener('click', loadBalances);
+});
