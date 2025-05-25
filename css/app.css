@@ -1,0 +1,442 @@
+/* General body styles */
+body {
+    padding-bottom: 32px;
+     /* background-color: #1C2526; */ /* Dark background */
+     background-color: #300924;
+    color: #E0E0E0; /* Light text */
+}
+
+/* General link styles */
+a {
+    color: #51b13e; /* Set all links to green */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #6fcf5a; /* Lighter green on hover */
+    text-decoration: underline;
+}
+
+/* Form controls */
+.form-control {
+    background-color: #2D3839; /* Dark background */
+    color: #E0E0E0; /* Light text */
+    border: 1px solid #555; /* Muted border */
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.form-control[readonly] {
+    cursor: text;
+    background-color: #2D3839;
+    color: #C0C0C0; /* Slightly muted text */
+    border: 1px solid #555;
+    opacity: 0.8;
+}
+
+.form-control:disabled {
+    background-color: #252F30; /* Darker for disabled */
+    color: #888; /* Muted text */
+    border: 1px solid #444;
+    cursor: not-allowed;
+}
+
+.form-control:focus {
+    background-color: #2D3839;
+    color: #E0E0E0;
+    border-color: #300924; /* Bright blue for focus */
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(77, 168, 255, 0.25);
+}
+
+.form-control::placeholder {
+    color: #888; /* Muted placeholder */
+    opacity: 1;
+}
+
+/* Feedback container */
+.feedback-container {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 4;
+}
+
+.feedback {
+    display: table;
+    padding: 0.5em 1em;
+    background-color: #D97500; /* Darker orange */
+    margin: 0 auto;
+    font-size: 2em;
+    color: #E0E0E0;
+    border: 2px solid #777;
+    border-top: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* No-border styles */
+.no-border {
+    border: 0;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1); /* Light shadow */
+    -webkit-box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Phrase styles */
+.phrase {
+    word-break: keep-all;
+    color: #E0E0E0;
+}
+
+/* Generate container strength */
+.generate-container .strength {
+    width: auto !important;
+    display: inline-block;
+    color: #E0E0E0;
+}
+
+/* Language links */
+.languages a {
+    padding-left: 10px;
+}
+
+.languages a:nth-of-type(1) {
+    margin-left: -12px;
+    padding-left: 0;
+}
+
+/* Monospace text */
+.monospace {
+    font-family: monospace;
+    color: #C0C0C0;
+}
+
+/* Entropy container */
+.entropy-container .filtered,
+.entropy-container .binary {
+    word-wrap: break-word;
+    color: #C0C0C0;
+}
+
+.entropy-container li {
+    padding-bottom: 5px;
+    color: #E0E0E0;
+}
+
+/* Card suits */
+.card-suit {
+    font-size: 19px;
+    line-height: 0;
+}
+
+.card-suit.club {
+    color: #00CC00;
+}
+
+.card-suit.diamond {
+    color: #5A7CFF;
+}
+
+.card-suit.heart {
+    color: #FF3333;
+}
+
+.card-suit.spade {
+    color: #E0E0E0;
+}
+
+/* QR container */
+.qr-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    text-align: center;
+    background-color: #2D3839; /* Dark background */
+    border: 1px solid #777;
+}
+
+.qr-image {
+    margin: 5px;
+    background-color: #2D3839; /* Dark container background */
+}
+
+.qr-hint,
+.qr-warning {
+    padding: 2px;
+    max-width: 320px;
+    color: #E0E0E0;
+}
+
+.qr-warning {
+    color: #FF6666;
+}
+
+/* More info links */
+.more-info {
+    cursor: help;
+    border-bottom: 1px dashed #777;
+    text-decoration: none;
+}
+
+/* Version info */
+.version {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #C0C0C0;
+}
+
+/* CSV styles */
+.csv {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: scroll;
+    font-family: monospace;
+    color: #C0C0C0;
+    background-color: #2D3839;
+    border: 1px solid #555;
+}
+
+/* Visual privacy */
+.visual-privacy .private-data {
+    display: none;
+}
+
+/* Text weight */
+.text-weight-normal {
+    font-weight: normal !important;
+}
+
+/* Table styles for generated addresses */
+table,
+.table,
+.table-striped,
+.table-bordered,
+.table-hover,
+.table-light,
+.table-dark {
+    background-color: #2D3839; /* Dark table background */
+    color: #E0E0E0; /* Light text */
+}
+
+table td,
+table th,
+.table td,
+.table th,
+.table-striped td,
+.table-striped th,
+.table-bordered td,
+.table-bordered th,
+.table-hover td,
+.table-hover th,
+.table-light td,
+.table-light th,
+.table-dark td,
+.table-dark th {
+    background-color: #2D3839; /* Dark cell background */
+    color: #E0E0E0; /* Light text */
+    border: 1px solid #555; /* Muted border */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #3A4647; /* Slightly lighter for stripes */
+}
+
+.table-hover tbody tr:hover {
+    background-color: #300924; /* Blue hover effect */
+    color: #E0E0E0;
+}
+
+table thead th,
+.table thead th {
+    background-color: #3A4647; /* Slightly lighter header */
+    color: #E0E0E0;
+    border-bottom: 2px solid #555;
+}
+
+/* Additional styles for common Bootstrap-like elements */
+.card,
+.alert,
+.modal-content,
+.popover,
+.tooltip-inner {
+    background-color: #2D3839; /* Dark background */
+    color: #E0E0E0;
+    border: 1px solid #555;
+}
+
+.btn {
+    background-color: #3A4647; /* Dark button */
+    color: #E0E0E0;
+    border: 1px solid #555;
+}
+
+.btn:hover {
+    background-color: #300924;
+    color: #E0E0E0;
+    border-color: #300924;
+}
+
+.btn-primary {
+    background-color: #300924;
+    border-color: #300924;
+    color: #E0E0E0;
+}
+
+.btn-primary:hover {
+    background-color: #300924;
+    border-color: #300924;
+}
+
+/* Toggle button styles */
+.toggle,
+.switch,
+.btn-toggle,
+input[type="checkbox"].toggle,
+input[type="checkbox"].switch {
+    background-color: #3A4647; /* Dark background */
+    color: #E0E0E0; /* Light text/icon */
+    border: 1px solid #555; /* Muted border */
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.toggle:hover,
+.switch:hover,
+.btn-toggle:hover,
+input[type="checkbox"].toggle:hover,
+input[type="checkbox"].switch:hover {
+    background-color: #300924; /* Blue hover */
+    color: #E0E0E0;
+    border-color: #300924;
+}
+
+.toggle:checked,
+.switch:checked,
+.btn-toggle.active,
+input[type="checkbox"].toggle:checked,
+input[type="checkbox"].switch:checked {
+    background-color: #300924; /* Blue when checked/active */
+    color: #E0E0E0;
+    border-color: #300924;
+}
+
+.toggle:focus,
+.switch:focus,
+.btn-toggle:focus,
+input[type="checkbox"].toggle:focus,
+input[type="checkbox"].switch:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(77, 168, 255, 0.25);
+}
+
+/* Optional: Custom toggle switch slider */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+.toggle-switch input[type="checkbox"] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #3A4647; /* Dark off state */
+    border: 1px solid #555;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #E0E0E0; /* Light knob */
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: #300924; /* Blue on state */
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.toggle-switch input:focus + .slider {
+    box-shadow: 0 0 0 0.2rem rgba(77, 168, 255, 0.25);
+}
+
+.alert {
+    background-color: #3A4647;
+    color: #E0E0E0;
+    border-color: #555;
+}
+
+.alert-success {
+    background-color: #1A4A2E; /* Dark green */
+    border-color: #2E7D32;
+    color: #A5D6A7;
+}
+
+.alert-danger {
+    background-color: #4A2E2E; /* Dark red */
+    border-color: #D32F2F;
+    color: #EF9A9A;
+}
+
+/* Tab content area */
+.tab-content {
+    background-color: #2D3839; /* Matches form controls and tables */
+    padding: 20px; /* Adds spacing inside the content area */
+    border: 1px solid #555; /* Muted border for definition */
+    border-top: none; /* Seamless connection with tabs */
+}
+
+/* Nav tabs container */
+.nav-tabs {
+    background-color: #1C2526; /* Matches body background */
+    border-bottom: 1px solid #555; /* Muted border below tabs */
+}
+
+/* Inactive tab links */
+.nav-tabs .nav-link {
+    background-color: #2D3839; /* Dark background */
+    color: #E0E0E0; /* Light text */
+    border: 1px solid #555; /* Muted border */
+    border-bottom: none; /* Removes bottom border for seamless look */
+    margin-bottom: -1px; /* Overlaps the container's bottom border */
+}
+
+/* Hover and focus states for tab links */
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link:focus {
+    background-color: #3A4647; /* Slightly lighter for feedback */
+    color: #E0E0E0; /* Maintain light text */
+}
+
+/* Active tab link */
+.nav-tabs .nav-link.active {
+    background-color: #2D3839; /* Matches tab content background */
+    color: #E0E0E0; /* Light text */
+    border-color: #555; /* Muted border */
+    border-bottom: 2px solid #300924; /* Blue indicator for active state */
+}
