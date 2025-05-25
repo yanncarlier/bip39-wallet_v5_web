@@ -21,8 +21,8 @@
     <body>
         <div class="container">
             <h1 class="text-center">BIP39-Wallet</h1>
-            <p class="version">v0.5.6</p>
-            <hr>
+            <p class="version">bip39-wallet_v5_web v0.5.6</p>
+
             <div class="row">
                 <div class="col-md-12">
                     <form class="form-horizontal" role="form">
@@ -958,9 +958,15 @@
                         <a href="#csv" role="tab" data-toggle="tab">CSV</a>
                     </li> -->
                 </ul>
+
                 <div class="addresses-type tab-content">
+
                     <div id="table" class="tab-pane active">
-                        <div class="col-md-12">
+                        <!-- 
+                        <div class="col-md-12"> -->
+                        <div class="">
+                            <br>
+
                             <table class="table table-striped w-auto" style="width: auto;">
                                 <thead>
                                     <th class="">
@@ -1031,11 +1037,12 @@
                     </div>
                 </div>
             </div>
-            <span>Show</span>
+            <br>
+
             <input type="number" class="rows-to-add btn" value="10">
             <button class="more btn">more rows</button>
-            <span>starting from index</span>
-            <input type="number" class="more-rows-start-index btn">
+
+            <input placeholder="starting from index" type="number" class="more-rows-start-index btn">
             <span>(leave blank to generate from next index)</span>
             <div class="qr-container hidden">
                 <div class="qr-hint bg-primary hidden">Click field to hide QR</div>
