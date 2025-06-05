@@ -1,10 +1,14 @@
-# bip39-wallet-html-js-IndexedDB
+## bip39-wallet
 
 
 
-Storage Mechanism
+"Alpha" stage  development , do not use in production
 
-- Replace localStorage with IndexedDB
 
-Why?
-localStorage is synchronous, has limited storage capacity, and is vulnerable to cross-site scripting (XSS) attacks, making it unsuitable for storing sensitive data like encrypted mnemonics in a production app. IndexedDB, on the other hand, is asynchronous, supports larger data sizes, and provides a more secure storage mechanism within the browser context of an Electron app.
+
+This project is a derivative work, inspired by and built upon the original code from the repository at https://github.com/iancoleman/bip39. 
+
+
+
+The first version will be a read-only wallet, deposit only and balance for certain coins.
+

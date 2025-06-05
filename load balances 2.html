@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bitcoin Balances</title>
+        <style>
+            /* Style the balance column for better readability */
+            td.balance {
+                text-align: right;
+            }
+        </style>
+    </head>
+
+    <body>
+        <!-- Add a button to load balances on click -->
+        <button id="load-balances">Load Balances</button>
+
+        <table class="table table-striped w-auto" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="input-group">
+                            <span>Address</span>
+                            <button class="address-toggle btn">Toggle</button>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="addresses monospace">
+                <tr>
+                    <td class="address"><a><span
+                                data-show-qr="">bc1qkqwzqerpj70pqucgyw4cq7eh0q84upfjw5yrr3</span><br></a></td>
+                </tr>
+                <tr>
+                    <td class="address"><a><span
+                                data-show-qr="">bc1qjxl6yyyqvrgg45chch9e4skt40msak4mve27tx</span><br></a></td>
+                </tr>
+                <!-- Additional rows can be added here -->
+            </tbody>
+        </table>
+
+        <script>
+            function addBalanceColumn() {
+                // Add 'Balance' header to the thead
+                const theadTr = document.querySelector('table thead tr');
+                const balanceTh = document.createElement('th');
+                balanceTh.textContent = 'Balance';
+                theadTr.appendChild(balanceTh);
+
+                // Select all rows in the tbody and add placeholder balance cells
+                const rows = document.querySelectorAll('table tbody.addresses.monospace tr');
+                rows.forEach(row => {
+                    const balanceTd = document.createElement('td');
+                    balanceTd.classList.add('balance');
+                    balanceTd.textContent = 'Not loaded'; // Initial placeholder
+                    row.appendChild(balanceTd);
+                });
+            }
+
+            // Function to fetch and update balances
+            function loadBalances() {
+                const rows = document.querySelectorAll('table tbody.addresses.monospace tr');
+                rows.forEach(row => {
+                    const address = row.querySelector('.address span').textContent;
+                    const balanceTd = row.querySelector('.balance');
+                    balanceTd.textContent = 'Loading...'; // Show loading state
+
+                    // Fetch the balance from the BlockCypher API
+                    fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${address}/balance`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Convert balance from satoshis to BTC
+                            const balance = data.balance / 100000000;
+                            balanceTd.textContent = balance.toFixed(8) + ' BTC'; // Display with 8 decimals
+                        })
+                        .catch(error => {
+                            console.error('Error fetching balance:', error);
+                            balanceTd.textContent = 'Error'; // Display error if fetch fails
+                        });
+                });
+            }
+
+            // Initialize the table and set up the button event listener
+            document.addEventListener('DOMContentLoaded', function () {
+                addBalanceColumn(); // Set up the table with balance column
+
+                // Attach click event to the button
+                document.getElementById('load-balances').addEventListener('click', loadBalances);
+            });
+        </script>
+    </body>
+
+</html>

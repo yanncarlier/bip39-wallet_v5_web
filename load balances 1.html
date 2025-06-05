@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bitcoin Balances</title>
+        <style>
+            /* Style the balance column for better readability */
+            td.balance {
+                text-align: right;
+            }
+        </style>
+    </head>
+
+    <body>
+        <table class="table table-striped w-auto" style="width: auto;">
+            <thead>
+                <tr>
+
+                    <th>
+                        <div class="input-group">
+                            <span>Address</span>
+                            <button class="address-toggle btn">Toggle</button>
+                        </div>
+                    </th>
+
+
+                </tr>
+            </thead>
+            <tbody class="addresses monospace">
+                <tr>
+
+                    <td class="address"><a><span
+                                data-show-qr="">bc1qkqwzqerpj70pqucgyw4cq7eh0q84upfjw5yrr3</span><br></a></td>
+
+
+                </tr>
+                <tr>
+
+                    <td class="address"><a><span
+                                data-show-qr="">bc1qjxl6yyyqvrgg45chch9e4skt40msak4mve27tx</span><br></a></td>
+
+
+                </tr>
+                <!-- Additional rows can be added here -->
+            </tbody>
+        </table>
+
+        <script>
+            function addBalanceColumn() {
+                // Add a new 'Balance' header to the thead
+                const theadTr = document.querySelector('table thead tr');
+                const balanceTh = document.createElement('th');
+                balanceTh.textContent = 'Balance';
+                theadTr.appendChild(balanceTh);
+
+                // Select all rows in the tbody
+                const tbody = document.querySelector('table tbody.addresses.monospace');
+                const rows = tbody.querySelectorAll('tr');
+
+                // Process each row
+                rows.forEach(row => {
+                    // Extract the Bitcoin address from the 'Address' cell
+                    const address = row.querySelector('.address span').textContent;
+
+                    // Create a new td for the balance and append it to the row
+                    const balanceTd = document.createElement('td');
+                    balanceTd.classList.add('balance');
+                    balanceTd.textContent = 'Loading...'; // Initial placeholder
+                    row.appendChild(balanceTd);
+
+                    // Fetch the balance from the BlockCypher API
+                    fetch(`https://api.blockcypher.com/v1/btc/main/addrs/${address}/balance`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Convert balance from satoshis to BTC (1 BTC = 100,000,000 satoshis)
+                            const balance = data.balance / 100000000;
+                            balanceTd.textContent = balance.toFixed(8) + ' BTC'; // Display with 8 decimals
+                        })
+                        .catch(error => {
+                            console.error('Error fetching balance:', error);
+                            balanceTd.textContent = 'Error'; // Display error if fetch fails
+                        });
+                });
+            }
+
+            // Call the function after the DOM is fully loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                addBalanceColumn();
+            });
+        </script>
+    </body>
+
+</html>
