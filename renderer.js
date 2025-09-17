@@ -227,3 +227,10 @@ function loadBalances() {
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('load-balances').addEventListener('click', loadBalances);
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    var checkbox = document.querySelector('.privacy-screen-toggle');
+    if (checkbox) {
+        checkbox.checked = true;
+    }
+});
